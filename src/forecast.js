@@ -63,48 +63,40 @@ const Forecast = () => {
       </form>
 
       <div className="info">
-        <div>
+        {data.cod === 200 ? (
+          <>
+            <div className="city">
+              {data.name}, {data.sys["country"]}
+            </div>
+            <div className="date">
+              {date} {time}
+            </div>
+            <div className="wDescription">{data.weather[0].description}</div>
+            <div className="iconImg">
+              <img
+                src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                alt=""
+              />
+            </div>
+
+            <div className="temperature">
+              <div className="container">
+                {Math.round(data.main["temp"])} <div className="circle"></div>
+              </div>
+            </div>
+            <div className="feelsLike">
+              <p>Feels Like</p>
+              <div className="container fl">
+                {Math.round(data.main["feels_like"])}
+                <div className="circle"></div>
+              </div>
+            </div>
+          </>
+        ) : (
           <div>
-            {data.cod === 200 ? (
-              <div>
-                <div className="city">
-                  {data.name}, {data.sys["country"]}
-                </div>
-                <div className="date">
-                  {date} {time}
-                </div>
-                <div>
-                  <div className="wDescription">
-                    {data.weather[0].description}
-                  </div>
-                  <div className="iconImg">
-                    <img
-                      src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-                      alt=""
-                    />
-                  </div>
-                  <div className="temperature">
-                    <div className="container">
-                      {Math.round(data.main["temp"])}{" "}
-                      <div className="circle"></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="feelsLike">
-                  <p>Feels Like</p>
-                  <div className="container fl">
-                    {Math.round(data.main["feels_like"])}
-                    <div className="circle"></div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <h1>Search a City</h1>
-              </div>
-            )}
+            <h1>Search a City</h1>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

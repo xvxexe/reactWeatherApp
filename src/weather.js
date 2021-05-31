@@ -40,7 +40,7 @@ const Conditions = ({
   console.log(Feels_Like);
 
   return (
-    <div>
+    <>
       <div className="city">
         {city},{country}
       </div>
@@ -68,7 +68,7 @@ const Conditions = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Conditions;
